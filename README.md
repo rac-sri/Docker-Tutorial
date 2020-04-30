@@ -1,4 +1,7 @@
-### Docker Tutorial
+# Docker Tutorial
+
+### *Below Code is Never gonna be used* 
+#### chroot : to make a folder act as a root, giving an illusion of another system completely.
 
 ##### Setting up root folder:
 ```
@@ -11,3 +14,26 @@
 7. mkdir lib{,64} // and now copy the dependecies from setp 6
 8. Similarly copy other commands and follow the older steps, eg.  /bin/ls
 9. chroot . bash // need super user priviledge
+```
+
+**ALternatively:** *Plus add Namespaces*
+```
+1. apt-get install debootstrap
+2. debootstrap --variant=minbase bionic(or any other os) <path>  [Reference](https://gist.github.com/varqox/42e213b6b2dde2b636ef)
+3. echo "mount -t proc none /proc # process namespace
+    mount -t sysfs none /sys # filesystem
+    mount -t tmpfs none /tmp # filesystem" >> /better-root/mounts.sh
+4. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot /better-root bash   // to make the processes be hidden by other chroot
+```
+
+**cgroups: Limit Resources**
+
+```
+1. apt-get install -y cgroup-tools htop
+2. cgcreate -g cpu,memory,blkio,devices,freezer:/sandbox
+3. ps aux
+   -cgclassify -g cpu,memory,blkio,devices,freezer:sandbox <PID>
+4. cat /sys/fs/cgroup/cpu/sandbox/tasks
+5. cgset -r cpu.cfs_period_us=100000 -r cpu.cfs_quota_us=$[ 5000 * $(getconf _NPROCESSORS_ONLN) ] sandbox
+6. cgset -r memory.limit_in_bytes=80M sandbox
+7. cgget -r memory.stat sandbox
