@@ -1,9 +1,9 @@
 # Docker Tutorial
 
 ### *Below Code is Never gonna be used* 
+
 #### chroot : to make a folder act as a root, giving an illusion of another system completely.
 
-##### Setting up root folder:
 ```
 1. mkdir <dirname>
 2. cd <dirname>
@@ -16,7 +16,7 @@
 9. chroot . bash // need super user priviledge
 ```
 
-**ALternatively:** *Plus add Namespaces*
+**Alternatively:** *Plus add Namespaces*
 ```
 1. apt-get install debootstrap
 2. debootstrap --variant=minbase bionic(or any other os) <path>  [Reference](https://gist.github.com/varqox/42e213b6b2dde2b636ef)
@@ -37,3 +37,18 @@
 5. cgset -r cpu.cfs_period_us=100000 -r cpu.cfs_quota_us=$[ 5000 * $(getconf _NPROCESSORS_ONLN) ] sandbox
 6. cgset -r memory.limit_in_bytes=80M sandbox
 7. cgget -r memory.stat sandbox
+```
+
+**Docker Images**
+```
+1. docker run --rm -dit --name my-alpine alpine:3.10 sh
+2. docker export -o dockercontainer.tar my-alpine
+3. docker kill my-alpine
+4. mkdir container-root
+5. tar xf dockercontainer.tar -C container-root/
+6. echo "mount -t proc none /proc
+   -mount -t sysfs none /sys
+   -mount -t tmpfs none /tmp" >> container-root/mounts.sh
+7. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot $PWD/container-root ash 
+```
+
