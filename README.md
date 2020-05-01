@@ -1,6 +1,6 @@
 # Docker Tutorial
 
-### *Below Code is Never gonna be used* 
+### _Below Code is Never gonna be used_
 
 #### chroot : to make a folder act as a root, giving an illusion of another system completely.
 
@@ -16,7 +16,8 @@
 9. chroot . bash // need super user priviledge
 ```
 
-**Alternatively:** *Plus add Namespaces*
+**Alternatively:** _Plus add Namespaces_
+
 ```
 1. apt-get install debootstrap
 2. debootstrap --variant=minbase bionic(or any other os) <path>  [Reference](https://gist.github.com/varqox/42e213b6b2dde2b636ef)
@@ -40,6 +41,7 @@
 ```
 
 **Docker Images**
+
 ```
 1. docker run --rm -dit --name my-alpine alpine:3.10 sh
 2. docker export -o dockercontainer.tar my-alpine
@@ -49,6 +51,22 @@
 6. echo "mount -t proc none /proc
    -mount -t sysfs none /sys
    -mount -t tmpfs none /tmp" >> container-root/mounts.sh
-7. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot $PWD/container-root ash 
+7. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot $PWD/container-root ash
 ```
 
+---
+
+### _BELOW CODE IS GONNA GET USED_
+
+```
+1. docker run --interactive --tty <name>:<version>
+   - docker run -it --name <give name to the process> <name>:<version>
+2. docker run -it --detach ubunto:bionic //run in background
+3. docker ps // get running processes
+4. docker attach <name>
+
+* docker image prune // clear installed images to save space
+* docker kill <name|hash>
+* docker logs <docker name>
+  - docker rm <docker name> //since docker kills it around after kill to , so to remove it from there either add -rm to run command or follow this.
+```
