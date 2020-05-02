@@ -105,6 +105,10 @@ Important Commands
 4. EXPOSE 3000 //in Dockerfile
    - docker run --init --rm -P nodeapp  and use the port you get from docker ps.  //not used genrally because of this
 5. docker inspect <name>
+6. docker run --mount type=bind,source="$(pwd)"/build,target=/usr/share/nginx/html -p 8080:80 nginx
+# if you want to make bind mounts (this creates a portal to the host comp. Any changes by host are reflected in dock and vice versa)
+7. docker run --env DATA_PATH=/data/num.txt --mount type=volume,src=incrementor-data,target=/data incrementor //volume bind (preferred)
+8.
 ```
 
 #### Resources
