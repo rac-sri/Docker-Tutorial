@@ -69,4 +69,42 @@
 * docker kill <name|hash>
 * docker logs <docker name>
   - docker rm <docker name> //since docker kills it around after kill to , so to remove it from there either add -rm to run command or follow this.
+* sudo docker run -it node:12-stretch //get node container
+  - sudo docker run -it node:12-stretch bash // enter bash instead of node env
 ```
+
+**DOCKER CLI**
+
+```
+Some fun stuff :
+1. docker pull jturpin/hollywood
+```
+
+Important Commands
+
+```
+1. docker inspect node:12-stretch
+2. docker -dit jturpin/hollywood //to detach and run in background
+3. docker pause <container id from docker ps>
+4. docker unpause
+5. docker kill <container id>
+6. docker history <docker name>
+7. docker container prune
+8. docker image list
+9. docker restart <container name>
+10. docker search <name>
+```
+
+**Run a docker file**
+
+```
+1. docker build --tag <name> <path>
+2. docker run <container id | name if specified>
+3. docker run --init --rm --publish 3000:3000 nodeapp //for sigterm shortcut using init , and take port 3000 and expose it on host port 3000
+4. EXPOSE 3000 //in Dockerfile
+   - docker run --init --rm -P nodeapp  and use the port you get from docker ps.
+```
+
+#### Resources
+
+(https://btholt.github.io/complete-intro-to-containers/more-complicated-nodejs-app)
