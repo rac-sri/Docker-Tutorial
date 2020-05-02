@@ -99,10 +99,12 @@ Important Commands
 
 ```
 1. docker build --tag <name> <path>
+   - docker build --tag <name> -f <filename> <path>
 2. docker run <container id | name if specified>
 3. docker run --init --rm --publish 3000:3000 nodeapp //for sigterm shortcut using init , and take port 3000 and expose it on host port 3000
 4. EXPOSE 3000 //in Dockerfile
-   - docker run --init --rm -P nodeapp  and use the port you get from docker ps.
+   - docker run --init --rm -P nodeapp  and use the port you get from docker ps.  //not used genrally because of this
+5. docker inspect <name>
 ```
 
 #### Resources
