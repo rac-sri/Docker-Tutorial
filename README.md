@@ -127,7 +127,23 @@ Some fun stuff :
 1. docker-compose up
    - docker-compose up --build //force to rebuild if the dockerfile got modifies
 2. docker-compose up --scale web=10 //start 10 web containers if multiple sever interaction needs to be observed
+```
+
+**KCOMPOSE**
+
+```
+1. install KCOMPOSE,minikube.
+2. minikube start  // to install kubernetics image and start the service
+3. kompose proxy --port 8080 & // & to run it in background
+4. kcompose up
+5. kubectl scale --replicas=5 depooyment/web  // 5 web containers run, used to scale apps using load **load balancer**
+6. kubectl get all
+7. kubectl delete all --all
+8. kompose convert // get kubernetic configuration using kompose
+```
+
 #### Resources
 
-https://btholt.github.io/complete-intro-to-containers
-```
+[Course Content](https://btholt.github.io/complete-intro-to-containers)
+
+[Working with Google Cloud Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/quickstart)
