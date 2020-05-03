@@ -80,7 +80,7 @@ Some fun stuff :
 1. docker pull jturpin/hollywood
 ```
 
-Important Commands
+**Important Commands**
 
 ```
 1. docker inspect node:12-stretch
@@ -111,6 +111,23 @@ Important Commands
 8.
 ```
 
+**Docker Network**
+
+```
+1. docker network ls
+// connect mongo eg
+2. docker network create --driver=bridge <name her app-net> // create network
+3. docker run -d --network=app-net -p 27017:27017 --name=db --rm mongo:3 // to run mongo server
+4. docker run -it --network=app.net --rm mongo:3 mongo --host db // to run mongo client
+```
+
+**Docker Compose**
+
+```
+1. docker-compose up
+   - docker-compose up --build //force to rebuild if the dockerfile got modifies
+2. docker-compose up --scale web=10 //start 10 web containers if multiple sever interaction needs to be observed
 #### Resources
 
-(https://btholt.github.io/complete-intro-to-containers/more-complicated-nodejs-app)
+https://btholt.github.io/complete-intro-to-containers
+```
