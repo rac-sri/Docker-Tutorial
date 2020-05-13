@@ -93,6 +93,7 @@ Some fun stuff :
 8. docker image list
 9. docker restart <container name>
 10. docker search <name>
+11. docker exec -it <container_id_or_name> echo "I'm inside the container!"
 ```
 
 **Run a docker file**
@@ -108,7 +109,6 @@ Some fun stuff :
 6. docker run --mount type=bind,source="$(pwd)"/build,target=/usr/share/nginx/html -p 8080:80 nginx
 # if you want to make bind mounts (this creates a portal to the host comp. Any changes by host are reflected in dock and vice versa)
 7. docker run --env DATA_PATH=/data/num.txt --mount type=volume,src=incrementor-data,target=/data incrementor //volume bind (preferred)
-8.
 ```
 
 **Docker Network**
