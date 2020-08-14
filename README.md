@@ -52,6 +52,7 @@
    -mount -t sysfs none /sys
    -mount -t tmpfs none /tmp" >> container-root/mounts.sh
 7. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot $PWD/container-root ash
+8. docker system prune -af --volumes  // delete all stopped containers
 ```
 
 ---
