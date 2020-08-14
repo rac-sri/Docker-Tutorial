@@ -52,7 +52,7 @@
    -mount -t sysfs none /sys
    -mount -t tmpfs none /tmp" >> container-root/mounts.sh
 7. unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot $PWD/container-root ash
-8. docker system prune -af --volumes  // delete all stopped containers
+
 ```
 
 ---
@@ -95,6 +95,7 @@ Some fun stuff :
 9. docker restart <container name>
 10. docker search <name>
 11. docker exec -it <container_id_or_name> echo "I'm inside the container!"
+12. docker system prune -af --volumes  // Remove all unused containers, networks, images (both dangling and unreferenced), and optionally, volumes.
 ```
 
 **Run a docker file**
